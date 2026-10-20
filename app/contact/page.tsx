@@ -14,6 +14,9 @@ export default function ContactPage() {
         <section className="min-h-screen flex items-center justify-center px-4 pt-20">
           <div className="max-w-4xl mx-auto w-full">
             <ScrollReveal>
+              <div className="mb-4">
+                <span className="text-xs text-zinc-600 font-mono">CONTACT · Form</span>
+              </div>
               <h1 className="text-6xl md:text-8xl lg:text-9xl font-bold tracking-tight mb-12">
                 Contact
               </h1>

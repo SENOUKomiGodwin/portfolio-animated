@@ -78,6 +78,9 @@ export default function ProjectsPage() {
         <section className="min-h-screen flex items-center justify-center px-4 pt-20">
           <div className="max-w-7xl mx-auto w-full">
             <ScrollReveal>
+              <div className="mb-4">
+                <span className="text-xs text-zinc-600 font-mono">PROJECTS · Roll 03</span>
+              </div>
               <h1 className="text-6xl md:text-8xl lg:text-9xl font-bold tracking-tight mb-12">
                 Projets
               </h1>

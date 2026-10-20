@@ -40,7 +40,20 @@ export function Hero() {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [lightPosition, setLightPosition] = useState({ x: 0, y: 0 });
   const [backdrop, setBackdrop] = useState<BackdropTheme>('dark');
+  const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
   const requestRef = useRef<number | null>(null);
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+    setPrefersReducedMotion(mediaQuery.matches);
+
+    const handleChange = (e: MediaQueryListEvent) => {
+      setPrefersReducedMotion(e.matches);
+    };
+
+    mediaQuery.addEventListener('change', handleChange);
+    return () => mediaQuery.removeEventListener('change', handleChange);
+  }, []);
 
   useEffect(() => {
     const saved = localStorage.getItem('heroBackdrop') as BackdropTheme;
@@ -63,6 +76,8 @@ export function Hero() {
   };
 
   useEffect(() => {
+    if (prefersReducedMotion) return;
+
     const animate = () => {
       setLightPosition((prev) => ({
         x: prev.x + (mousePosition.x - prev.x) * 0.1,
@@ -78,7 +93,7 @@ export function Hero() {
         cancelAnimationFrame(requestRef.current);
       }
     };
-  }, [mousePosition]);
+  }, [mousePosition, prefersReducedMotion]);
 
   const currentTheme = backdropThemes[backdrop];
 
@@ -87,29 +102,31 @@ export function Hero() {
       className={`min-h-screen flex items-center justify-center px-4 relative overflow-hidden transition-colors duration-500 ${currentTheme.bg}`}
       onMouseMove={handleMouseMove}
     >
-      <motion.div
-        className="fixed pointer-events-none"
-        style={{
-          left: lightPosition.x,
-          top: lightPosition.y,
-          transform: 'translate(-50%, -50%)',
-        }}
-        animate={{
-          opacity: [0.6, 0.8, 0.6],
-        }}
-        transition={{
-          duration: 2,
-          repeat: Infinity,
-          repeatType: 'reverse',
-        }}
-      >
-        <div
-          className="w-[600px] h-[600px] rounded-full"
+      {!prefersReducedMotion && (
+        <motion.div
+          className="fixed pointer-events-none"
           style={{
-            background: `radial-gradient(circle, ${currentTheme.light} 0%, transparent 70%)`,
+            left: lightPosition.x,
+            top: lightPosition.y,
+            transform: 'translate(-50%, -50%)',
           }}
-        />
-      </motion.div>
+          animate={{
+            opacity: [0.6, 0.8, 0.6],
+          }}
+          transition={{
+            duration: 2,
+            repeat: Infinity,
+            repeatType: 'reverse',
+          }}
+        >
+          <div
+            className="w-[600px] h-[600px] rounded-full"
+            style={{
+              background: `radial-gradient(circle, ${currentTheme.light} 0%, transparent 70%)`,
+            }}
+          />
+        </motion.div>
+      )}
 
       <div className="max-w-7xl mx-auto w-full relative z-10">
         <motion.h1

@@ -5,6 +5,7 @@ import { TextReveal } from "@/components/text-reveal";
 import { DividerLine } from "@/components/divider-line";
 import { LenisProvider } from "@/components/providers";
 import { PageTransition } from "@/components/page-transition";
+import { AnimatedHighlight } from "@/components/animated-highlight";
 import { siteConfig } from "@/lib/site.config";
 
 function SkillLine({ label, skills }: { label: string; skills: string[] }) {
@@ -39,6 +40,9 @@ export default function AboutPage() {
           <div className="max-w-6xl mx-auto w-full grid lg:grid-cols-2 gap-16">
             <div>
               <ScrollReveal>
+                <div className="mb-4">
+                  <span className="text-xs text-zinc-600 font-mono">FILE 01 — About</span>
+                </div>
                 <h1 className="text-6xl md:text-8xl lg:text-9xl font-bold tracking-tight mb-12">
                   À propos
                 </h1>
@@ -50,7 +54,11 @@ export default function AboutPage() {
                 <div className="space-y-8 text-lg text-zinc-300 leading-relaxed">
                   <p>
                     Je suis {siteConfig.name}, {siteConfig.title} basé à {siteConfig.location}.
-                    Je développe des applications web et desktop avec une attention particulière pour l'expérience utilisateur et la qualité du code.
+                    Je développe des applications web et desktop avec une attention particulière pour{' '}
+                    <AnimatedHighlight>
+                      l'expérience utilisateur
+                    </AnimatedHighlight>
+                    et la qualité du code.
                   </p>
                   <p>
                     Mes projets incluent des sites vitrine en HTML/CSS/JavaScript, des applications desktop en Python avec PySide6, et des contributions à des projets d'équipe.
@@ -65,6 +73,9 @@ export default function AboutPage() {
 
               <ScrollReveal delay={0.2}>
                 <div>
+                  <div className="mb-4">
+                    <span className="text-xs text-zinc-600 font-mono">SKILLS · List</span>
+                  </div>
                   <h2 className="text-3xl font-bold mb-8">Compétences</h2>
 
                   <div className="space-y-8">
