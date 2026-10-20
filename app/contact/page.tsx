@@ -3,6 +3,7 @@ import { Marquee } from "@/components/marquee";
 import { ScrollReveal } from "@/components/scroll-reveal";
 import { LenisProvider } from "@/components/providers";
 import { PageTransition } from "@/components/page-transition";
+import { EditorFrame } from "@/components/editor-frame";
 import { siteConfig } from "@/lib/site.config";
 
 export default function ContactPage() {
@@ -100,12 +101,14 @@ export default function ContactPage() {
                     />
                   </div>
 
-                  <button
-                    type="submit"
-                    className="px-6 py-3 bg-[#00ff41] text-zinc-950 rounded-lg font-medium hover:bg-[#00cc33] transition-colors"
-                  >
-                    Envoyer
-                  </button>
+                  <EditorFrame label="SUBMIT">
+                    <button
+                      type="submit"
+                      className="px-6 py-3 bg-[#00ff41] text-zinc-950 rounded-lg font-medium hover:bg-[#00cc33] transition-colors"
+                    >
+                      Envoyer
+                    </button>
+                  </EditorFrame>
                 </form>
               </ScrollReveal>
             </div>

@@ -6,6 +6,7 @@ import { ImageReveal } from "@/components/image-reveal";
 import { DividerLine } from "@/components/divider-line";
 import { LenisProvider } from "@/components/providers";
 import { PageTransition } from "@/components/page-transition";
+import { EditorFrame } from "@/components/editor-frame";
 import { BrowserMockup } from "@/components/mockups/browser-mockup";
 import { DesktopMockup } from "@/components/mockups/desktop-mockup";
 import { PhoneMockup } from "@/components/mockups/phone-mockup";
@@ -100,23 +101,27 @@ export default async function ProjectPage({ params }: { params: Promise<{ id: st
 
             <ScrollReveal delay={0.3}>
               <div className="flex flex-wrap gap-4">
-                <a
-                  href={project.code}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center px-6 py-3 bg-[#00ff41] text-zinc-950 rounded-lg font-medium hover:bg-[#00cc33] transition-colors"
-                >
-                  Voir le code
-                </a>
-                {project.demo && (
+                <EditorFrame label="CODE">
                   <a
-                    href={project.demo}
+                    href={project.code}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center px-6 py-3 border border-zinc-700 rounded-lg font-medium hover:bg-zinc-800 transition-colors"
+                    className="inline-flex items-center px-6 py-3 bg-[#00ff41] text-zinc-950 rounded-lg font-medium hover:bg-[#00cc33] transition-colors"
                   >
-                    Démo live
+                    Voir le code
                   </a>
+                </EditorFrame>
+                {project.demo && (
+                  <EditorFrame label="LIVE">
+                    <a
+                      href={project.demo}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center px-6 py-3 border border-zinc-700 rounded-lg font-medium hover:bg-zinc-800 transition-colors"
+                    >
+                      Démo live
+                    </a>
+                  </EditorFrame>
                 )}
               </div>
             </ScrollReveal>

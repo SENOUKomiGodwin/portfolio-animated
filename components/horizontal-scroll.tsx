@@ -7,6 +7,7 @@ import { siteConfig } from '@/lib/site.config';
 import { BrowserMockup } from '@/components/mockups/browser-mockup';
 import { DesktopMockup } from '@/components/mockups/desktop-mockup';
 import { PhoneMockup } from '@/components/mockups/phone-mockup';
+import { EditorFrame } from '@/components/editor-frame';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -76,14 +77,16 @@ export function HorizontalScroll() {
                     </span>
                   ))}
                 </div>
-                <a
-                  href={project.code}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-block px-6 py-3 bg-[#00ff41] text-zinc-950 rounded-lg font-medium hover:bg-[#00cc33] transition-colors"
-                >
-                  Voir le code
-                </a>
+                <EditorFrame label="VIEW CODE">
+                  <a
+                    href={project.code}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-block px-6 py-3 bg-[#00ff41] text-zinc-950 rounded-lg font-medium hover:bg-[#00cc33] transition-colors"
+                  >
+                    Voir le code
+                  </a>
+                </EditorFrame>
               </div>
               <div className="aspect-video">
                 {getMockup(project.id)}
