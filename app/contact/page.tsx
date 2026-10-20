@@ -1,0 +1,118 @@
+import { Preloader } from "@/components/preloader";
+import { Marquee } from "@/components/marquee";
+import { ScrollReveal } from "@/components/scroll-reveal";
+import { LenisProvider } from "@/components/providers";
+import { PageTransition } from "@/components/page-transition";
+import { siteConfig } from "@/lib/site.config";
+
+export default function ContactPage() {
+  return (
+    <LenisProvider>
+      <Preloader />
+      <PageTransition>
+        <section className="min-h-screen flex items-center justify-center px-4 pt-20">
+          <div className="max-w-4xl mx-auto w-full">
+            <ScrollReveal>
+              <h1 className="text-6xl md:text-8xl lg:text-9xl font-bold tracking-tight mb-12">
+                Contact
+              </h1>
+            </ScrollReveal>
+
+            <div className="grid md:grid-cols-2 gap-12">
+              <ScrollReveal delay={0.1}>
+                <div className="space-y-6">
+                  <p className="text-lg text-zinc-400 leading-relaxed">
+                    Disponible pour des missions freelance et des opportunités à temps plein.
+                    N'hésitez pas à me contacter.
+                  </p>
+
+                  <div className="space-y-4">
+                    <a
+                      href={`mailto:${siteConfig.email}`}
+                      className="block text-2xl hover:text-[#00ff41] transition-colors"
+                    >
+                      {siteConfig.email}
+                    </a>
+                    <a
+                      href={siteConfig.github}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="block text-2xl hover:text-[#00ff41] transition-colors"
+                    >
+                      GitHub
+                    </a>
+                    {siteConfig.linkedin && (
+                      <a
+                        href={siteConfig.linkedin}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="block text-2xl hover:text-[#00ff41] transition-colors"
+                      >
+                        LinkedIn
+                      </a>
+                    )}
+                  </div>
+                </div>
+              </ScrollReveal>
+
+              <ScrollReveal delay={0.2}>
+                <form
+                  action="https://formspree.io/f/[FORM_ID]"
+                  method="POST"
+                  className="space-y-6"
+                >
+                  <div>
+                    <label htmlFor="name" className="block text-sm font-medium mb-2">
+                      Nom
+                    </label>
+                    <input
+                      type="text"
+                      id="name"
+                      name="name"
+                      required
+                      className="w-full px-4 py-3 bg-zinc-900 border border-zinc-800 rounded-lg focus:outline-none focus:border-[#00ff41] transition-colors"
+                    />
+                  </div>
+
+                  <div>
+                    <label htmlFor="email" className="block text-sm font-medium mb-2">
+                      Email
+                    </label>
+                    <input
+                      type="email"
+                      id="email"
+                      name="email"
+                      required
+                      className="w-full px-4 py-3 bg-zinc-900 border border-zinc-800 rounded-lg focus:outline-none focus:border-[#00ff41] transition-colors"
+                    />
+                  </div>
+
+                  <div>
+                    <label htmlFor="message" className="block text-sm font-medium mb-2">
+                      Message
+                    </label>
+                    <textarea
+                      id="message"
+                      name="message"
+                      rows={6}
+                      required
+                      className="w-full px-4 py-3 bg-zinc-900 border border-zinc-800 rounded-lg focus:outline-none focus:border-[#00ff41] transition-colors resize-none"
+                    />
+                  </div>
+
+                  <button
+                    type="submit"
+                    className="px-6 py-3 bg-[#00ff41] text-zinc-950 rounded-lg font-medium hover:bg-[#00cc33] transition-colors"
+                  >
+                    Envoyer
+                  </button>
+                </form>
+              </ScrollReveal>
+            </div>
+          </div>
+        </section>
+        <Marquee />
+      </PageTransition>
+    </LenisProvider>
+  );
+}
