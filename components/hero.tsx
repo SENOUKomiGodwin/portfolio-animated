@@ -4,32 +4,6 @@ import { motion } from 'framer-motion';
 import { useState, useEffect, useRef } from 'react';
 import { siteConfig } from '@/lib/site.config';
 
-type BackdropTheme = 'dark' | 'green' | 'light';
-
-const backdropThemes = {
-  dark: {
-    bg: 'bg-zinc-950',
-    text: 'text-zinc-100',
-    subtext: 'text-zinc-400',
-    muted: 'text-zinc-500',
-    light: 'rgba(0, 255, 65, 0.15)',
-  },
-  green: {
-    bg: 'bg-zinc-900',
-    text: 'text-zinc-100',
-    subtext: 'text-zinc-300',
-    muted: 'text-zinc-400',
-    light: 'rgba(0, 255, 65, 0.25)',
-  },
-  light: {
-    bg: 'bg-zinc-100',
-    text: 'text-zinc-900',
-    subtext: 'text-zinc-600',
-    muted: 'text-zinc-500',
-    light: 'rgba(0, 255, 65, 0.2)',
-  },
-};
-
 export function Hero() {
   const brand = siteConfig.brand;
   const name = siteConfig.name;
@@ -39,7 +13,6 @@ export function Hero() {
   const brandLetters = brand.split('');
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [lightPosition, setLightPosition] = useState({ x: 0, y: 0 });
-  const [backdrop, setBackdrop] = useState<BackdropTheme>('dark');
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
   const requestRef = useRef<number | null>(null);
 
@@ -54,18 +27,6 @@ export function Hero() {
     mediaQuery.addEventListener('change', handleChange);
     return () => mediaQuery.removeEventListener('change', handleChange);
   }, []);
-
-  useEffect(() => {
-    const saved = localStorage.getItem('heroBackdrop') as BackdropTheme;
-    if (saved && (saved === 'dark' || saved === 'green' || saved === 'light')) {
-      setBackdrop(saved);
-    }
-  }, []);
-
-  const handleBackdropChange = (theme: BackdropTheme) => {
-    setBackdrop(theme);
-    localStorage.setItem('heroBackdrop', theme);
-  };
 
   const handleMouseMove = (e: React.MouseEvent) => {
     const rect = e.currentTarget.getBoundingClientRect();
@@ -95,11 +56,9 @@ export function Hero() {
     };
   }, [mousePosition, prefersReducedMotion]);
 
-  const currentTheme = backdropThemes[backdrop];
-
   return (
     <section
-      className={`min-h-screen flex items-center justify-center px-4 relative overflow-hidden transition-colors duration-500 ${currentTheme.bg}`}
+      className="h-[100svh] flex flex-col items-center justify-center px-4 relative overflow-hidden bg-zinc-950"
       onMouseMove={handleMouseMove}
     >
       {!prefersReducedMotion && (
@@ -111,7 +70,7 @@ export function Hero() {
             transform: 'translate(-50%, -50%)',
           }}
           animate={{
-            opacity: [0.6, 0.8, 0.6],
+            opacity: [0.7, 0.9, 0.7],
           }}
           transition={{
             duration: 2,
@@ -120,17 +79,21 @@ export function Hero() {
           }}
         >
           <div
-            className="w-[600px] h-[600px] rounded-full"
+            className="w-[500px] h-[500px] rounded-full"
             style={{
-              background: `radial-gradient(circle, ${currentTheme.light} 0%, transparent 70%)`,
+              background: 'radial-gradient(circle, rgba(0, 255, 65, 0.25) 0%, transparent 70%)',
             }}
           />
         </motion.div>
       )}
 
-      <div className="max-w-7xl mx-auto w-full relative z-10">
+      <div className="max-w-7xl mx-auto w-full relative z-10 flex-1 flex flex-col items-center justify-center">
         <motion.h1
-          className={`text-7xl md:text-9xl lg:text-[12rem] font-bold tracking-tight mb-8 ${currentTheme.text}`}
+          className="font-bold tracking-tight mb-8 text-zinc-100"
+          style={{
+            fontSize: 'clamp(2.5rem, 12vw, 10rem)',
+            lineHeight: 1,
+          }}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.5, delay: 0.5 }}
@@ -162,7 +125,7 @@ export function Hero() {
         </motion.h1>
 
         <motion.p
-          className={`text-2xl md:text-3xl lg:text-4xl ${currentTheme.subtext} mb-4`}
+          className="text-2xl md:text-3xl lg:text-4xl text-zinc-400 mb-4"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.8, delay: 1.5 }}
@@ -171,42 +134,32 @@ export function Hero() {
         </motion.p>
 
         <motion.p
-          className={`text-lg ${currentTheme.muted}`}
+          className="text-lg text-zinc-500"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.8, delay: 1.8 }}
         >
           {location}
         </motion.p>
-
-        <motion.div
-          className="fixed bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-4"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.8, delay: 2.5 }}
-        >
-          <p className={`text-xs ${currentTheme.muted} font-mono`}>
-            Move the light · click for a new backdrop
-          </p>
-          <div className="flex gap-3">
-            <button
-              onClick={() => handleBackdropChange('dark')}
-              className={`w-4 h-4 rounded-full bg-zinc-950 border-2 border-zinc-700 hover:border-[#00ff41] transition-colors ${backdrop === 'dark' ? 'ring-2 ring-[#00ff41]' : ''}`}
-              aria-label="Dark backdrop"
-            />
-            <button
-              onClick={() => handleBackdropChange('green')}
-              className={`w-4 h-4 rounded-full bg-zinc-900 border-2 border-zinc-700 hover:border-[#00ff41] transition-colors ${backdrop === 'green' ? 'ring-2 ring-[#00ff41]' : ''}`}
-              aria-label="Green backdrop"
-            />
-            <button
-              onClick={() => handleBackdropChange('light')}
-              className={`w-4 h-4 rounded-full bg-zinc-100 border-2 border-zinc-300 hover:border-[#00ff41] transition-colors ${backdrop === 'light' ? 'ring-2 ring-[#00ff41]' : ''}`}
-              aria-label="Light backdrop"
-            />
-          </div>
-        </motion.div>
       </div>
+
+      <motion.div
+        className="fixed bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.8, delay: 2.5 }}
+      >
+        <motion.div
+          className="w-px h-12 bg-gradient-to-b from-[#00ff41] to-transparent"
+          animate={{ y: [0, 8, 0] }}
+          transition={{
+            duration: 1.5,
+            repeat: Infinity,
+            repeatType: 'loop',
+          }}
+        />
+        <span className="text-xs text-zinc-600 font-mono">Scroll</span>
+      </motion.div>
     </section>
   );
 }
