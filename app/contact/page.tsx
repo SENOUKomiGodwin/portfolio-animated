@@ -5,6 +5,7 @@ import { LenisProvider } from "@/components/providers";
 import { PageTransition } from "@/components/page-transition";
 import { EditorFrame } from "@/components/editor-frame";
 import { siteConfig } from "@/lib/site.config";
+import { siteData } from "@/content/site-data";
 
 export default function ContactPage() {
   return (
@@ -26,8 +27,7 @@ export default function ContactPage() {
               <ScrollReveal delay={0.1}>
                 <div className="space-y-4 sm:space-y-6">
                   <p className="text-base sm:text-lg text-zinc-400 leading-relaxed">
-                    Disponible pour des missions freelance et des opportunités à temps plein.
-                    N'hésitez pas à me contacter.
+                    {siteData.availability}
                   </p>
 
                   <div className="space-y-3 sm:space-y-4">

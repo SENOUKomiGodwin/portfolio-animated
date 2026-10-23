@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import { useState } from 'react';
+import { usePathname } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
 import { MagneticButton } from './magnetic-button';
 import { siteConfig } from '@/lib/site.config';
@@ -9,6 +10,8 @@ import { siteConfig } from '@/lib/site.config';
 export function Nav() {
   const [isOpen, setIsOpen] = useState(false);
   const [isHoveringLogo, setIsHoveringLogo] = useState(false);
+  const brand = siteConfig.brand;
+  const pathname = usePathname();
 
   const links = [
     { label: 'Accueil', href: '/' },
@@ -16,6 +19,19 @@ export function Nav() {
     { label: 'À propos', href: '/a-propos' },
     { label: 'Contact', href: '/contact' },
   ];
+
+  const landingLinks = [
+    { label: 'Intro', href: '#intro' },
+    { label: 'Ce que je fais', href: '#faire' },
+    { label: 'Projets', href: '#projets' },
+    { label: 'Stack', href: '#stack' },
+    { label: 'Contact', href: '#contact' },
+  ];
+
+  const isHomePage = pathname === '/';
+  const menuLinks = isHomePage ? landingLinks : links;
+
+  const brandMain = brand.split('<')[0];
 
   return (
     <>
@@ -26,7 +42,7 @@ export function Nav() {
           onMouseEnter={() => setIsHoveringLogo(true)}
           onMouseLeave={() => setIsHoveringLogo(false)}
         >
-          <span>Win_ner</span>
+          <span>{brandMain}</span>
           <motion.span
             animate={{ letterSpacing: isHoveringLogo ? '0.2em' : '0em' }}
             transition={{ duration: 0.3 }}
@@ -61,7 +77,7 @@ export function Nav() {
             </MagneticButton>
 
             <div className="flex flex-col gap-8">
-              {links.map((link, index) => (
+              {menuLinks.map((link, index) => (
                 <motion.div
                   key={link.href}
                   initial={{ opacity: 0, y: 50 }}

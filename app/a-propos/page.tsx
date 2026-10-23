@@ -7,6 +7,7 @@ import { LenisProvider } from "@/components/providers";
 import { PageTransition } from "@/components/page-transition";
 import { AnimatedHighlight } from "@/components/animated-highlight";
 import { siteConfig } from "@/lib/site.config";
+import { siteData } from "@/content/site-data";
 
 function SkillLine({ label, skills }: { label: string; skills: string[] }) {
   return (
@@ -52,20 +53,7 @@ export default function AboutPage() {
 
               <TextReveal delay={0.1}>
                 <div className="space-y-6 sm:space-y-8 text-base sm:text-lg text-zinc-300 leading-relaxed">
-                  <p>
-                    Je suis {siteConfig.name}, {siteConfig.title} basé à {siteConfig.location}.
-                    Je développe des applications web et desktop avec une attention particulière pour{' '}
-                    <AnimatedHighlight>
-                      l'expérience utilisateur
-                    </AnimatedHighlight>
-                    et la qualité du code.
-                  </p>
-                  <p>
-                    Mes projets incluent des sites vitrine en HTML/CSS/JavaScript, des applications desktop en Python avec PySide6, et des contributions à des projets d'équipe.
-                  </p>
-                  <p>
-                    Disponible pour des missions freelance et des opportunités à temps plein.
-                  </p>
+                  <p>{siteData.bio}</p>
                 </div>
               </TextReveal>
 
@@ -79,10 +67,10 @@ export default function AboutPage() {
                   <h2 className="text-2xl sm:text-3xl font-bold mb-6 sm:mb-8">Compétences</h2>
 
                   <div className="space-y-6 sm:space-y-8">
-                    <SkillLine label="Langages" skills={siteConfig.skills.languages} />
-                    <SkillLine label="Frameworks et librairies" skills={siteConfig.skills.frameworks} />
-                    <SkillLine label="Bases de données" skills={siteConfig.skills.databases} />
-                    <SkillLine label="Outils" skills={siteConfig.skills.tools} />
+                    <SkillLine label="Langages" skills={siteData.skills.languages} />
+                    <SkillLine label="Frameworks et librairies" skills={siteData.skills.frameworks} />
+                    <SkillLine label="Bases de données" skills={siteData.skills.databases} />
+                    <SkillLine label="Outils" skills={siteData.skills.tools} />
                   </div>
                 </div>
               </ScrollReveal>

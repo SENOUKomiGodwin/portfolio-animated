@@ -19,6 +19,7 @@ function ProjectCard({ project, index }: { project: typeof siteConfig.projects[0
       case 'edupaie':
         return <DesktopMockup />;
       case 'bidapp':
+      case 'bid-app':
         return <PhoneMockup />;
       default:
         return null;

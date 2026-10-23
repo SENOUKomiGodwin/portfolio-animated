@@ -1,30 +1,29 @@
 # CONTENU À REMPLIR
 
-Ce fichier contient les informations manquantes à compléter.
+## Informations manquantes
 
-## LinkedIn
-- URL LinkedIn : [À REMPLIR]
-- Actuellement masqué dans le site tant que non fourni
+### LinkedIn
+- Lien LinkedIn : [À REMPLIR]
+- (Le lien LinkedIn est masqué tant qu'il n'est pas renseigné)
 
-## Bid App - Rôle détaillé
-- Description précise de votre rôle dans le projet Bid App : [À REMPLIR]
-- Exemple : "J'ai travaillé sur l'interface utilisateur du module pressing et sur l'intégration du système de suivi de commande"
+### Bid App - Rôle précis
+- Mon rôle précis dans le projet : [À REMPLIR]
+- Note : Ne jamais présenter ce projet comme entièrement le mien
 
-## Parcours et expériences (Page À propos)
-- Parcours détaillé : [À REMPLIR]
-- Expériences professionnelles : [À REMPLIR]
-- Études : [À REMPLIR]
-- Ce qui me motive : [À REMPLIR]
+### Captures d'écran des projets
+Placez les captures d'écran dans `/public/projects/` :
+- `/public/projects/agritogo.png` - Capture du site AgriTogo
+- `/public/projects/edupaie.png` - Capture de l'application EduPaie
+- `/public/projects/bidapp.png` - Capture de l'application Bid App
 
-## Formspree
-- Form ID pour le formulaire de contact : [À REMPLIR]
-- Obtenir un ID sur https://formspree.io/
+### Photo de profil (optionnelle)
+- Photo de profil : [À REMPLIR]
+- Placez dans `/public/profile.jpg` ou `/public/profile.png`
 
-## Domaine
-- Domaine pour le déploiement : [À REMPLIR]
-- À mettre dans `site.config.ts` et `astro.config.mjs`
+### Années d'expérience
+- Les années d'expérience ne sont pas affichées sur le site
+- Ne les ajoutez pas dans le contenu
 
-## Captures d'écran
-- EduPaie : capture d'écran à placer dans `public/projects/edupaie-screenshot.png`
-- Bid App : capture d'écran à placer dans `public/projects/bidapp-screenshot.png`
-- AgriTogo : capture de la démo live à placer dans `public/projects/agritogo-screenshot.png`
+### Parcours et formation
+- Le parcours et la formation ne sont pas affichés sur le site
+- Ne les ajoutez pas dans le contenu

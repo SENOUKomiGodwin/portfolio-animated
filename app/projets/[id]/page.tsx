@@ -11,6 +11,7 @@ import { BrowserMockup } from "@/components/mockups/browser-mockup";
 import { DesktopMockup } from "@/components/mockups/desktop-mockup";
 import { PhoneMockup } from "@/components/mockups/phone-mockup";
 import { siteConfig } from "@/lib/site.config";
+import { siteData } from "@/content/site-data";
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
 
@@ -19,6 +20,7 @@ export const dynamic = 'force-dynamic';
 export default async function ProjectPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
   const project = siteConfig.projects.find((p) => p.id === id);
+  const originalProject = siteData.projects.find((p) => p.slug === id);
 
   if (!project) {
     notFound();
@@ -47,7 +49,7 @@ export default async function ProjectPage({ params }: { params: Promise<{ id: st
               <div className="aspect-video bg-zinc-900 rounded-lg mb-8 sm:mb-12 overflow-hidden border border-zinc-800">
                 {project.id === 'agritogo' && <BrowserMockup />}
                 {project.id === 'edupaie' && <DesktopMockup />}
-                {project.id === 'bidapp' && <PhoneMockup />}
+                {(project.id === 'bidapp' || project.id === 'bid-app') && <PhoneMockup />}
               </div>
             </ScrollReveal>
 
@@ -61,9 +63,11 @@ export default async function ProjectPage({ params }: { params: Promise<{ id: st
                 </p>
 
                 <h2 className="text-2xl sm:text-3xl font-bold mb-3 sm:mb-4">Ce que j'ai construit</h2>
-                <p className="text-base sm:text-lg text-zinc-400 leading-relaxed mb-6 sm:mb-8">
-                  {project.features}
-                </p>
+                <ul className="text-base sm:text-lg text-zinc-400 leading-relaxed mb-6 sm:mb-8 list-disc pl-4 sm:pl-6">
+                  {originalProject?.features.map((feature, index) => (
+                    <li key={index}>{feature}</li>
+                  ))}
+                </ul>
 
                 <h2 className="text-2xl sm:text-3xl font-bold mb-3 sm:mb-4">Stack technique</h2>
                 <div className="flex flex-wrap gap-1 sm:gap-2 mb-6 sm:mb-8">
