@@ -28,28 +28,28 @@ function ProjectCard({ project, index }: { project: typeof siteConfig.projects[0
   return (
     <ScrollReveal key={project.id} delay={index * 0.1}>
       <ProjectHoverPreview projectId={project.id} title={project.title}>
-        <div className="p-8 border border-zinc-800 hover:border-[#00ff41] transition-colors min-h-[400px] flex flex-col group">
+        <div className="p-4 sm:p-6 md:p-8 border border-zinc-800 hover:border-[#00ff41] transition-colors min-h-[350px] sm:min-h-[400px] flex flex-col group">
           <Link href={`/projets/${project.id}`} className="block flex-1">
-            <div className="aspect-video bg-zinc-900 rounded-lg mb-6 overflow-hidden border border-zinc-800">
+            <div className="aspect-video bg-zinc-900 rounded-lg mb-4 md:mb-6 overflow-hidden border border-zinc-800">
               {getMockup()}
             </div>
-            <h2 className="text-[2.5rem] font-bold mb-4">{project.title}</h2>
-            <p className="text-zinc-300 mb-4 text-base leading-relaxed">{project.description}</p>
-            <div className="flex flex-wrap gap-2 mb-4">
+            <h2 className="text-xl sm:text-2xl md:text-[2.5rem] font-bold mb-2 md:mb-4">{project.title}</h2>
+            <p className="text-zinc-300 mb-3 md:mb-4 text-sm sm:text-base leading-relaxed line-clamp-3">{project.description}</p>
+            <div className="flex flex-wrap gap-1 md:gap-2 mb-3 md:mb-4">
               {project.stack.map((tech) => (
                 <span
                   key={tech}
-                  className="text-[13px] px-3 py-1 bg-zinc-800 rounded-full"
+                  className="text-xs sm:text-[13px] px-2 py-1 md:px-3 md:py-1 bg-zinc-800 rounded-full"
                 >
                   {tech}
                 </span>
               ))}
             </div>
           </Link>
-          <div className="mt-auto pt-4 border-t border-zinc-800">
-            <p className="text-sm text-zinc-400 mb-2">{project.type}</p>
-            <div className="flex gap-4">
-              <Link href={`/projets/${project.id}`} className="text-sm text-[#00ff41] hover:underline">
+          <div className="mt-auto pt-3 md:pt-4 border-t border-zinc-800">
+            <p className="text-xs sm:text-sm text-zinc-400 mb-1 md:mb-2">{project.type}</p>
+            <div className="flex gap-2 md:gap-4 flex-wrap">
+              <Link href={`/projets/${project.id}`} className="text-xs sm:text-sm text-[#00ff41] hover:underline">
                 Voir les détails →
               </Link>
               {project.demo && (
@@ -57,7 +57,7 @@ function ProjectCard({ project, index }: { project: typeof siteConfig.projects[0
                   href={project.demo}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-sm text-[#00ff41] hover:underline"
+                  className="text-xs sm:text-sm text-[#00ff41] hover:underline"
                 >
                   Voir la démo →
                 </a>
@@ -88,7 +88,7 @@ export default function ProjectsPage() {
 
             <DividerLine className="mb-12" />
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8">
               {siteConfig.projects.map((project, index) => (
                 <ProjectCard key={project.id} project={project} index={index} />
               ))}

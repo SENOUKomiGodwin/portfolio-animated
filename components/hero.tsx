@@ -87,9 +87,9 @@ export function Hero() {
         </motion.div>
       )}
 
-      <div className="max-w-7xl mx-auto w-full relative z-10">
+      <div className="max-w-7xl mx-auto w-full relative z-10 px-2">
         <motion.h1
-          className="text-7xl md:text-9xl lg:text-[12rem] font-bold tracking-tight mb-8 text-zinc-100"
+          className="text-4xl sm:text-5xl md:text-7xl lg:text-9xl xl:text-[12rem] font-bold tracking-tight mb-8 text-zinc-100 break-words"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.5, delay: 0.5 }}
@@ -121,7 +121,7 @@ export function Hero() {
         </motion.h1>
 
         <motion.p
-          className="text-2xl md:text-3xl lg:text-4xl text-zinc-400 mb-4"
+          className="text-lg md:text-2xl lg:text-3xl xl:text-4xl text-zinc-400 mb-4 break-words"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.8, delay: 1.5 }}
@@ -130,7 +130,7 @@ export function Hero() {
         </motion.p>
 
         <motion.p
-          className="text-lg text-zinc-500"
+          className="text-base md:text-lg text-zinc-500"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.8, delay: 1.8 }}

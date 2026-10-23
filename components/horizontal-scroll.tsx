@@ -58,20 +58,20 @@ export function HorizontalScroll() {
         {siteConfig.projects.map((project) => (
           <div
             key={project.id}
-            className="panel flex-shrink-0 flex items-center justify-center p-8"
-            style={{ width: '70vw' }}
+            className="panel flex-shrink-0 flex items-center justify-center p-4 sm:p-6 md:p-8"
+            style={{ width: '85vw' }}
           >
-            <div className="max-w-4xl w-full grid lg:grid-cols-2 gap-8 items-center">
+            <div className="max-w-4xl w-full grid lg:grid-cols-2 gap-6 lg:gap-8 items-center">
               <div>
-                <h2 className="text-5xl md:text-7xl lg:text-8xl font-bold mb-6 whitespace-nowrap overflow-hidden">
+                <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl xl:text-8xl font-bold mb-4 md:mb-6 whitespace-nowrap overflow-hidden">
                   {project.title}
                 </h2>
-                <p className="text-lg md:text-xl text-zinc-400 mb-8">{project.description}</p>
-                <div className="flex flex-wrap gap-2 mb-8">
+                <p className="text-sm sm:text-base md:text-lg lg:text-xl text-zinc-400 mb-4 md:mb-8 line-clamp-3">{project.description}</p>
+                <div className="flex flex-wrap gap-1 md:gap-2 mb-4 md:mb-8">
                   {project.stack.map((tech) => (
                     <span
                       key={tech}
-                      className="text-sm px-3 py-1 bg-zinc-800 rounded-full"
+                      className="text-xs sm:text-sm px-2 py-1 md:px-3 md:py-1 bg-zinc-800 rounded-full"
                     >
                       {tech}
                     </span>
@@ -82,13 +82,13 @@ export function HorizontalScroll() {
                     href={project.code}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-block px-6 py-3 bg-[#00ff41] text-zinc-950 rounded-lg font-medium hover:bg-[#00cc33] transition-colors"
+                    className="inline-block px-4 py-2 md:px-6 md:py-3 bg-[#00ff41] text-zinc-950 rounded-lg font-medium hover:bg-[#00cc33] transition-colors text-sm md:text-base"
                   >
                     Voir le code
                   </a>
                 </EditorFrame>
               </div>
-              <div className="aspect-video">
+              <div className="aspect-video hidden lg:block">
                 {getMockup(project.id)}
               </div>
             </div>
