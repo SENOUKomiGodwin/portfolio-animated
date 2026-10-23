@@ -51,83 +51,81 @@ function ProjectCard({ project, index }: ProjectCardProps) {
 
   return (
     <div className="w-[85vw] sm:w-[75vw] md:w-[70vw] lg:w-[65vw] flex-shrink-0">
-      <Link href={`/projets/${project.slug}`}>
-        <motion.div
-          className="relative bg-zinc-900 border border-zinc-800 hover:border-[#00ff41] transition-colors p-6 sm:p-8 md:p-10 lg:p-12 cursor-pointer group"
-          onMouseMove={handleMouseMove}
-          onMouseEnter={() => setIsHovered(true)}
-          onMouseLeave={() => setIsHovered(false)}
-        >
-          <div className="absolute top-4 right-4 text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold text-zinc-800 group-hover:text-[#00ff41] transition-colors">
-            0{index + 1}
+      <motion.div
+        className="relative bg-zinc-900 border border-zinc-800 hover:border-[#00ff41] transition-colors p-6 sm:p-8 md:p-10 lg:p-12 cursor-pointer group"
+        onMouseMove={handleMouseMove}
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
+      >
+        <Link href={`/projets/${project.slug}`} className="absolute inset-0 z-10" />
+
+        <div className="absolute top-4 right-4 text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold text-zinc-800 group-hover:text-[#00ff41] transition-colors">
+          0{index + 1}
+        </div>
+
+        {project.type?.includes('Contribution') && (
+          <div className="absolute top-4 left-4 px-3 py-1 bg-[#00ff41] text-zinc-950 text-xs sm:text-sm font-bold rounded-full">
+            Contribution
           </div>
+        )}
 
-          {project.type?.includes('Contribution') && (
-            <div className="absolute top-4 left-4 px-3 py-1 bg-[#00ff41] text-zinc-950 text-xs sm:text-sm font-bold rounded-full">
-              Contribution
-            </div>
-          )}
-
-          <div className="aspect-video bg-zinc-950 rounded-lg mb-6 sm:mb-8 overflow-hidden border border-zinc-800">
-            <motion.div
-              style={{ x: imageX, y: imageY }}
-              transition={{ type: 'spring', stiffness: 150, damping: 20 }}
-            >
-              {hasImage ? (
-                <img
-                  src={getImagePath()}
-                  alt={project.slug}
-                  className="w-full h-full object-cover"
-                />
-              ) : (
-                getMockup()
-              )}
-            </motion.div>
-          </div>
-
-          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 sm:mb-6">
-            {project.slug.charAt(0).toUpperCase() + project.slug.slice(1)}
-          </h2>
-
-          <p className="text-base sm:text-lg text-zinc-400 mb-4 sm:mb-6 leading-relaxed">
-            {project.description}
-          </p>
-
-          <div className="flex flex-wrap gap-2 sm:gap-3 mb-6 sm:mb-8">
-            {project.stack.map((tech) => (
-              <span
-                key={tech}
-                className="text-base sm:text-lg px-3 py-1 sm:px-4 sm:py-2 bg-zinc-800 rounded-full border border-zinc-700 group-hover:border-[#00ff41] group-hover:text-[#00ff41] transition-colors"
-              >
-                {tech}
-              </span>
-            ))}
-          </div>
-
-          <div className="flex gap-3 sm:gap-4 flex-wrap">
-            {project.demo && (
-              <a
-                href={project.demo}
-                target="_blank"
-                rel="noopener noreferrer"
-                onClick={(e) => e.stopPropagation()}
-                className="inline-flex items-center px-4 sm:px-6 py-2 sm:py-3 border border-zinc-700 rounded-lg font-medium hover:bg-zinc-800 transition-colors text-base sm:text-lg"
-              >
-                Voir la démo
-              </a>
+        <div className="aspect-video bg-zinc-950 rounded-lg mb-6 sm:mb-8 overflow-hidden border border-zinc-800">
+          <motion.div
+            style={{ x: imageX, y: imageY }}
+            transition={{ type: 'spring', stiffness: 150, damping: 20 }}
+          >
+            {hasImage ? (
+              <img
+                src={getImagePath()}
+                alt={project.slug}
+                className="w-full h-full object-cover"
+              />
+            ) : (
+              getMockup()
             )}
+          </motion.div>
+        </div>
+
+        <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 sm:mb-6">
+          {project.slug.charAt(0).toUpperCase() + project.slug.slice(1)}
+        </h2>
+
+        <p className="text-base sm:text-lg text-zinc-400 mb-4 sm:mb-6 leading-relaxed">
+          {project.description}
+        </p>
+
+        <div className="flex flex-wrap gap-2 sm:gap-3 mb-6 sm:mb-8">
+          {project.stack.map((tech) => (
+            <span
+              key={tech}
+              className="text-base sm:text-lg px-3 py-1 sm:px-4 sm:py-2 bg-zinc-800 rounded-full border border-zinc-700 group-hover:border-[#00ff41] group-hover:text-[#00ff41] transition-colors"
+            >
+              {tech}
+            </span>
+          ))}
+        </div>
+
+        <div className="flex gap-3 sm:gap-4 flex-wrap relative z-20">
+          {project.demo && (
             <a
-              href={project.code}
+              href={project.demo}
               target="_blank"
               rel="noopener noreferrer"
-              onClick={(e) => e.stopPropagation()}
-              className="inline-flex items-center px-4 sm:px-6 py-2 sm:py-3 bg-[#00ff41] text-zinc-950 rounded-lg font-medium hover:bg-[#00cc33] transition-colors text-base sm:text-lg"
+              className="inline-flex items-center px-4 sm:px-6 py-2 sm:py-3 border border-zinc-700 rounded-lg font-medium hover:bg-zinc-800 transition-colors text-base sm:text-lg"
             >
-              Voir le code
+              Voir la démo
             </a>
-          </div>
-        </motion.div>
-      </Link>
+          )}
+          <a
+            href={project.code}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center px-4 sm:px-6 py-2 sm:py-3 bg-[#00ff41] text-zinc-950 rounded-lg font-medium hover:bg-[#00cc33] transition-colors text-base sm:text-lg"
+          >
+            Voir le code
+          </a>
+        </div>
+      </motion.div>
     </div>
   );
 }
