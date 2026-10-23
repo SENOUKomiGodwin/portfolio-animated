@@ -65,7 +65,7 @@ export function Nav() {
 
   return (
     <>
-      <nav className="fixed top-0 left-0 right-0 z-50 px-4 py-6 flex justify-between items-center">
+      <nav className="fixed top-0 left-0 right-0 z-50 px-4 sm:px-6 lg:px-8 py-6 flex justify-between items-center">
         <Link
           href="/"
           className="text-xl font-bold flex items-center gap-1"
@@ -82,22 +82,38 @@ export function Nav() {
           </motion.span>
         </Link>
 
-        {isHomePage && activeSection && (
-          <div className="hidden sm:block">
+        {/* Desktop Navbar */}
+        <div className="hidden md:flex items-center gap-6 lg:gap-8">
+          {isHomePage && activeSection && (
             <span className="text-xs text-zinc-600 font-mono uppercase tracking-widest">
               {activeSection}
             </span>
-          </div>
-        )}
+          )}
+          {menuLinks.map((link) => (
+            <Link
+              key={link.href}
+              href={link.href}
+              className={`text-sm font-medium transition-colors ${
+                isHomePage && link.href === `#${activeSection}`
+                  ? 'text-[#00ff41]'
+                  : 'text-zinc-400 hover:text-zinc-100'
+              }`}
+            >
+              {link.label}
+            </Link>
+          ))}
+        </div>
 
+        {/* Mobile Menu Button */}
         <MagneticButton
           onClick={() => setIsOpen(true)}
-          className="text-sm uppercase tracking-widest hover:text-zinc-400 transition-colors"
+          className="md:hidden text-sm uppercase tracking-widest hover:text-zinc-400 transition-colors"
         >
           Menu
         </MagneticButton>
       </nav>
 
+      {/* Mobile Fullscreen Menu */}
       <AnimatePresence>
         {isOpen && (
           <motion.div
@@ -105,7 +121,7 @@ export function Nav() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.3 }}
-            className="fixed inset-0 z-[60] bg-zinc-950 flex items-center justify-center"
+            className="fixed inset-0 z-[60] bg-zinc-950 flex items-center justify-center md:hidden"
           >
             <MagneticButton
               onClick={() => setIsOpen(false)}
