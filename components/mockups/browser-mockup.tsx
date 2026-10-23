@@ -5,9 +5,7 @@ export function BrowserMockup({ children }: { children?: React.ReactNode }) {
         <div className="w-3 h-3 rounded-full bg-red-500" />
         <div className="w-3 h-3 rounded-full bg-yellow-500" />
         <div className="w-3 h-3 rounded-full bg-green-500" />
-        <div className="flex-1 mx-4 h-6 bg-zinc-700 rounded text-xs text-zinc-500 flex items-center px-3">
-          get-agri-togo.vercel.app
-        </div>
+        <div className="flex-1 mx-4 h-6 bg-zinc-700 rounded" />
       </div>
       <div className="p-6 min-h-[300px]">
         {children || (

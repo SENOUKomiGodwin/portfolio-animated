@@ -16,9 +16,7 @@ export function PhoneMockup({ children }: { children?: React.ReactNode }) {
                 </div>
                 <div className="border border-zinc-700 rounded-lg p-2 space-y-2">
                   <div className="h-3 bg-zinc-700 rounded w-16" />
-                  <div className="h-8 bg-[#00ff41] rounded w-full flex items-center justify-center text-zinc-950 text-xs font-medium">
-                    En cours
-                  </div>
+                  <div className="h-8 bg-zinc-700 rounded w-full" />
                 </div>
                 <div className="flex justify-between items-center">
                   <div className="h-6 bg-zinc-700 rounded w-8" />

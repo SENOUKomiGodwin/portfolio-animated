@@ -17,7 +17,7 @@ export const siteConfig = {
   skills: siteData.skills,
 
   projects: siteData.projects.map((project) => ({
-    id: project.slug === 'bid-app' ? 'bidapp' : project.slug,
+    id: project.slug,
     title: project.slug.charAt(0).toUpperCase() + project.slug.slice(1),
     description: project.description,
     features: project.features,

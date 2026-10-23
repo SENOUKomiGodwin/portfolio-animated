@@ -49,7 +49,7 @@ export default async function ProjectPage({ params }: { params: Promise<{ id: st
               <div className="aspect-video bg-zinc-900 rounded-lg mb-8 sm:mb-12 overflow-hidden border border-zinc-800">
                 {project.id === 'agritogo' && <BrowserMockup />}
                 {project.id === 'edupaie' && <DesktopMockup />}
-                {(project.id === 'bidapp' || project.id === 'bid-app') && <PhoneMockup />}
+                {project.id === 'bid-app' && <PhoneMockup />}
               </div>
             </ScrollReveal>
 
