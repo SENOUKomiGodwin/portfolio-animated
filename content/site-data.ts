@@ -16,8 +16,12 @@ export interface SiteData {
   location: string;
   availability: string;
   email: string;
+  emailSubject: string;
+  emailBody: string;
   github: string;
   linkedin: string | null;
+  whatsapp: string;
+  whatsappMessage: string;
   skills: {
     languages: string[];
     frameworks: string[];
@@ -35,8 +39,12 @@ export const siteData: SiteData = {
   location: "Lomé, Togo",
   availability: "Disponible pour des missions freelance et des opportunités à temps plein.",
   email: "godwinsenou@icloud.com",
+  emailSubject: "Contact depuis votre portfolio",
+  emailBody: "Bonjour Godwin,\n\n",
   github: "https://github.com/SENOUKomiGodwin",
-  linkedin: null,
+  linkedin: "https://www.linkedin.com/in/komi-godwin-senou",
+  whatsapp: "22897836468",
+  whatsappMessage: "Bonjour Godwin, je vous contacte depuis votre portfolio.",
   skills: {
     languages: ["Python", "JavaScript", "HTML", "CSS"],
     frameworks: ["Laravel", "React", "Next.js", "NestJS", "Tailwind CSS", "Bootstrap"],

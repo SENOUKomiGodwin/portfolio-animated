@@ -5,6 +5,7 @@ import { useState } from 'react';
 import { EditorFrame } from '@/components/editor-frame';
 import { MagneticButton } from '@/components/magnetic-button';
 import { siteData } from '@/content/site-data';
+import { getWhatsAppLink, getMailtoLink, getLinkedInLink } from '@/lib/contact-links';
 
 export function ContactSection() {
   const [copied, setCopied] = useState(false);
@@ -14,6 +15,10 @@ export function ContactSection() {
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
   };
+
+  const whatsappLink = getWhatsAppLink();
+  const mailtoLink = getMailtoLink();
+  const linkedinLink = getLinkedInLink();
 
   const lines = ['Travaillons', 'ensemble.'];
 
@@ -65,14 +70,24 @@ export function ContactSection() {
               >
                 GitHub
               </a>
-              {siteData.linkedin && (
+              {linkedinLink && (
                 <a
-                  href={siteData.linkedin}
+                  href={linkedinLink}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-zinc-400 hover:text-[#00ff41] transition-colors text-base sm:text-lg"
                 >
                   LinkedIn
+                </a>
+              )}
+              {whatsappLink && (
+                <a
+                  href={whatsappLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-zinc-400 hover:text-[#00ff41] transition-colors text-base sm:text-lg"
+                >
+                  WhatsApp
                 </a>
               )}
             </div>
