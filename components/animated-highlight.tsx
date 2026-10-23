@@ -5,9 +5,10 @@ import { useEffect, useState } from 'react';
 
 interface AnimatedHighlightProps {
   children: React.ReactNode;
+  mode?: 'draw' | 'loop';
 }
 
-export function AnimatedHighlight({ children }: AnimatedHighlightProps) {
+export function AnimatedHighlight({ children, mode = 'draw' }: AnimatedHighlightProps) {
   const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
 
   useEffect(() => {
@@ -23,25 +24,45 @@ export function AnimatedHighlight({ children }: AnimatedHighlightProps) {
   }, []);
 
   if (prefersReducedMotion) {
-    return <span className="relative inline-block text-[#00ff41]">{children}</span>;
+    return <span className="relative inline-block">{children}</span>;
+  }
+
+  if (mode === 'loop') {
+    return (
+      <motion.span
+        className="relative inline-block"
+        initial={{ backgroundPosition: '0% 50%' }}
+        animate={{ backgroundPosition: ['0% 50%', '100% 50%', '0% 50%'] }}
+        transition={{
+          duration: 3,
+          repeat: Infinity,
+          repeatType: 'loop',
+        }}
+        style={{
+          background: 'linear-gradient(90deg, transparent 0%, rgba(0, 255, 65, 0.3) 50%, transparent 100%)',
+          backgroundSize: '200% 100%',
+        }}
+      >
+        {children}
+      </motion.span>
+    );
   }
 
   return (
     <motion.span
       className="relative inline-block"
-      initial={{ backgroundPosition: '0% 50%' }}
-      animate={{ backgroundPosition: ['0% 50%', '100% 50%', '0% 50%'] }}
-      transition={{
-        duration: 3,
-        repeat: Infinity,
-        repeatType: 'loop',
-      }}
-      style={{
-        background: 'linear-gradient(90deg, transparent 0%, rgba(0, 255, 65, 0.3) 50%, transparent 100%)',
-        backgroundSize: '200% 100%',
-      }}
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1 }}
+      viewport={{ once: true }}
     >
       {children}
+      <motion.span
+        className="absolute bottom-0 left-0 h-full w-full bg-[#00ff41]/20 pointer-events-none"
+        initial={{ scaleX: 0, originX: 0 }}
+        whileInView={{ scaleX: 1 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.8, ease: 'easeOut' }}
+      />
     </motion.span>
   );
 }
