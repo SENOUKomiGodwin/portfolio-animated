@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { usePathname } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
 import { MagneticButton } from './magnetic-button';
@@ -10,6 +10,7 @@ import { siteConfig } from '@/lib/site.config';
 export function Nav() {
   const [isOpen, setIsOpen] = useState(false);
   const [isHoveringLogo, setIsHoveringLogo] = useState(false);
+  const [activeSection, setActiveSection] = useState('');
   const brand = siteConfig.brand;
   const pathname = usePathname();
 
@@ -31,6 +32,35 @@ export function Nav() {
   const isHomePage = pathname === '/';
   const menuLinks = isHomePage ? landingLinks : links;
 
+  useEffect(() => {
+    if (!isHomePage) return;
+
+    const sections = ['intro', 'faire', 'projets', 'stack', 'contact'];
+
+    const handleScroll = () => {
+      const scrollPosition = window.scrollY + window.innerHeight / 2;
+
+      for (const section of sections) {
+        const element = document.getElementById(section);
+        if (element) {
+          const { top, bottom } = element.getBoundingClientRect();
+          const absoluteTop = top + window.scrollY;
+          const absoluteBottom = bottom + window.scrollY;
+
+          if (scrollPosition >= absoluteTop && scrollPosition < absoluteBottom) {
+            setActiveSection(section);
+            break;
+          }
+        }
+      }
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    handleScroll();
+
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [isHomePage]);
+
   const brandMain = brand.split('<')[0];
 
   return (
@@ -51,6 +81,14 @@ export function Nav() {
             &lt;/&gt;
           </motion.span>
         </Link>
+
+        {isHomePage && activeSection && (
+          <div className="hidden sm:block">
+            <span className="text-xs text-zinc-600 font-mono uppercase tracking-widest">
+              {activeSection}
+            </span>
+          </div>
+        )}
 
         <MagneticButton
           onClick={() => setIsOpen(true)}
@@ -87,7 +125,11 @@ export function Nav() {
                   <Link
                     href={link.href}
                     onClick={() => setIsOpen(false)}
-                    className="text-6xl md:text-8xl font-bold hover:text-zinc-400 transition-colors"
+                    className={`text-6xl md:text-8xl font-bold transition-colors ${
+                      isHomePage && link.href === `#${activeSection}`
+                        ? 'text-[#00ff41]'
+                        : 'hover:text-zinc-400'
+                    }`}
                   >
                     {link.label}
                   </Link>
