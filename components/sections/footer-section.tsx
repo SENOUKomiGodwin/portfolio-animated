@@ -3,6 +3,7 @@
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { useRef } from 'react';
 import { siteData } from '@/content/site-data';
+import { getWhatsAppLink, getMailtoLink, getLinkedInLink } from '@/lib/contact-links';
 
 export function FooterSection() {
   const footerRef = useRef<HTMLElement>(null);
@@ -19,6 +20,10 @@ export function FooterSection() {
 
   const brand = siteData.brand;
   const brandMain = brand.split('<')[0];
+
+  const whatsappLink = getWhatsAppLink();
+  const mailtoLink = getMailtoLink();
+  const linkedinLink = getLinkedInLink();
 
   return (
     <footer ref={footerRef} className="py-12 sm:py-16 lg:py-20 px-4 border-t border-zinc-800">
@@ -37,9 +42,42 @@ export function FooterSection() {
         </div>
 
         <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 sm:gap-6">
-          <p className="text-zinc-500 text-sm sm:text-base">
-            © 2026 {siteData.fullName}
-          </p>
+          <div className="flex flex-col sm:flex-row gap-3 sm:gap-6">
+            <p className="text-zinc-500 text-sm sm:text-base">
+              © 2026 {siteData.fullName}
+            </p>
+
+            <div className="flex gap-4 sm:gap-6">
+              {mailtoLink && (
+                <a
+                  href={mailtoLink}
+                  className="text-zinc-500 hover:text-[#00ff41] transition-colors text-sm sm:text-base"
+                >
+                  Email
+                </a>
+              )}
+              {whatsappLink && (
+                <a
+                  href={whatsappLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-zinc-500 hover:text-[#00ff41] transition-colors text-sm sm:text-base"
+                >
+                  WhatsApp
+                </a>
+              )}
+              {linkedinLink && (
+                <a
+                  href={linkedinLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-zinc-500 hover:text-[#00ff41] transition-colors text-sm sm:text-base"
+                >
+                  LinkedIn
+                </a>
+              )}
+            </div>
+          </div>
 
           <motion.button
             onClick={scrollToTop}

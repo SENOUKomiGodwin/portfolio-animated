@@ -4,10 +4,14 @@ import { ScrollReveal } from "@/components/scroll-reveal";
 import { LenisProvider } from "@/components/providers";
 import { PageTransition } from "@/components/page-transition";
 import { EditorFrame } from "@/components/editor-frame";
-import { siteConfig } from "@/lib/site.config";
 import { siteData } from "@/content/site-data";
+import { getWhatsAppLink, getMailtoLink, getLinkedInLink } from "@/lib/contact-links";
 
 export default function ContactPage() {
+  const whatsappLink = getWhatsAppLink();
+  const mailtoLink = getMailtoLink();
+  const linkedinLink = getLinkedInLink();
+
   return (
     <LenisProvider>
       <Preloader />
@@ -31,28 +35,40 @@ export default function ContactPage() {
                   </p>
 
                   <div className="space-y-3 sm:space-y-4">
+                    {mailtoLink && (
+                      <a
+                        href={mailtoLink}
+                        className="block text-lg sm:text-xl md:text-2xl hover:text-[#00ff41] transition-colors break-words"
+                      >
+                        {siteData.email}
+                      </a>
+                    )}
                     <a
-                      href={`mailto:${siteConfig.email}`}
-                      className="block text-lg sm:text-xl md:text-2xl hover:text-[#00ff41] transition-colors break-words"
-                    >
-                      {siteConfig.email}
-                    </a>
-                    <a
-                      href={siteConfig.github}
+                      href={siteData.github}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="block text-lg sm:text-xl md:text-2xl hover:text-[#00ff41] transition-colors"
                     >
                       GitHub
                     </a>
-                    {siteConfig.linkedin && (
+                    {linkedinLink && (
                       <a
-                        href={siteConfig.linkedin}
+                        href={linkedinLink}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="block text-lg sm:text-xl md:text-2xl hover:text-[#00ff41] transition-colors"
                       >
                         LinkedIn
+                      </a>
+                    )}
+                    {whatsappLink && (
+                      <a
+                        href={whatsappLink}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="block text-lg sm:text-xl md:text-2xl hover:text-[#00ff41] transition-colors"
+                      >
+                        WhatsApp
                       </a>
                     )}
                   </div>

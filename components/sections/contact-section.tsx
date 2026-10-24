@@ -113,7 +113,6 @@ export function ContactSection() {
                 <MagneticButton
                   onClick={handleCopyEmail}
                   className="inline-flex items-center justify-center px-2 sm:px-3 py-2 sm:py-3 border border-zinc-700 rounded-lg hover:bg-zinc-800 transition-colors text-sm sm:text-base"
-                  title="Copier l'adresse email"
                 >
                   {copied ? (
                     !prefersReducedMotion ? (
