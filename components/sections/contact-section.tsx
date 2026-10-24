@@ -42,25 +42,6 @@ export function ContactSection() {
     </svg>
   );
 
-  const WhatsAppIcon = () => (
-    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9l.8-1.9-3.4-2 1.4-1.4 2.2 3.4" />
-    </svg>
-  );
-
-  const LinkedInIcon = () => (
-    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z" />
-      <rect x="2" y="9" width="4" height="12" />
-    </svg>
-  );
-
-  const GitHubIcon = () => (
-    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0-19.44 0A5.44 5.44 0 0 0 3.56 13.22c0 5.46 3.3 6.65 6.44 7A3.37 3.37 0 0 0 9 18.13V22" />
-    </svg>
-  );
-
   const CopyIcon = () => (
     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
       <rect x="9" y="9" width="13" height="13" rx="2" ry="2" />
@@ -147,7 +128,6 @@ export function ContactSection() {
                       rel="noopener noreferrer"
                       className="inline-flex items-center gap-2 px-4 sm:px-6 py-2 sm:py-3 border border-zinc-700 rounded-lg font-medium hover:bg-zinc-800 transition-colors text-sm sm:text-base"
                     >
-                      <WhatsAppIcon />
                       WhatsApp
                     </a>
                   </EditorFrame>
@@ -169,7 +149,6 @@ export function ContactSection() {
                       rel="noopener noreferrer"
                       className="inline-flex items-center gap-2 px-4 sm:px-6 py-2 sm:py-3 border border-zinc-700 rounded-lg font-medium hover:bg-zinc-800 transition-colors text-sm sm:text-base"
                     >
-                      <LinkedInIcon />
                       LinkedIn
                     </a>
                   </EditorFrame>
@@ -190,7 +169,6 @@ export function ContactSection() {
                     rel="noopener noreferrer"
                     className="inline-flex items-center gap-2 px-4 sm:px-6 py-2 sm:py-3 border border-zinc-700 rounded-lg font-medium hover:bg-zinc-800 transition-colors text-sm sm:text-base"
                   >
-                    <GitHubIcon />
                     GitHub
                   </a>
                 </EditorFrame>
