@@ -49,7 +49,7 @@ export const siteData: SiteData = {
     languages: ["Python", "JavaScript", "HTML", "CSS"],
     frameworks: ["Laravel", "React", "Next.js", "NestJS", "Tailwind CSS", "Bootstrap"],
     databases: ["MySQL", "PostgreSQL", "SQLite"],
-    tools: ["Git", "GitHub"],
+    tools: ["Git", "GitHub", "VS Code", "Figma"],
   },
   projects: [
     {
