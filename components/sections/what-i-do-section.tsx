@@ -71,6 +71,11 @@ export function WhatIDoSection() {
       number: '03',
       title: 'Bases de données',
       technologies: siteData.skills.databases
+    },
+    {
+      number: '04',
+      title: 'Outils',
+      technologies: siteData.skills.tools
     }
   ];
 
