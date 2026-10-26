@@ -77,8 +77,8 @@ export const siteData: SiteData = {
       type: "Contribution à un projet d'équipe (fork)",
       demo: null,
       code: "https://github.com/SENOUKomiGodwin/bid--app",
-      note: "Ne jamais présenter ce projet comme entièrement le mien. Mon rôle précis est [À REMPLIR].",
+      note: "Ne jamais présenter ce projet comme entièrement le mien. Mon rôle précis est Scrum master.",
     },
   ],
-  bio: "Développeur fullstack basé à Lomé, Togo. Je développe des applications web et desktop. Mes projets incluent des sites vitrines en HTML/CSS/JavaScript, des applications desktop en Python/PySide6, et des contributions à des projets d'équipe.",
+  bio: "Développeur fullstack basé à Lomé, au Togo, je conçois et développe des applications web, mobile et desktop, de l’interface utilisateur jusqu’à la base de données. J’accorde une attention particulière à la qualité du code, à la clarté des interfaces et à la performance. Rigoureux et autonome, je m’attache à livrer des solutions fiables, maintenables et adaptées aux besoins réels des utilisateurs. Ouvert aux opportunités et aux collaborations, je suis disponible pour de nouveaux projets.",
 };
