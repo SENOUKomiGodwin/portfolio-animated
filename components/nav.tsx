@@ -19,10 +19,9 @@ export function Nav() {
 
   const links = [
     { label: 'Accueil', href: '/' },
-    { label: 'Projets', href: isProjectDetailPage ? '/#projets' : '/projets' },
+    { label: 'Projets', href: '/projets' },
     { label: 'À propos', href: '/a-propos' },
     { label: 'Contact', href: '/contact' },
-    // { label: 'Contact', href: '/contact' },
   ];
 
   const landingLinks = [
@@ -33,7 +32,7 @@ export function Nav() {
     { label: 'Contact', href: '#contact' },
   ];
 
-  const menuLinks = isHomePage ? landingLinks : links;
+  const menuLinks = isProjectDetailPage ? [] : (isHomePage ? landingLinks : links);
 
   useEffect(() => {
     if (!isHomePage) return;

@@ -33,7 +33,7 @@ export default async function ProjectPage({ params }: { params: Promise<{ id: st
         <section className="min-h-screen px-4 sm:px-6 pt-24 sm:pt-32 pb-12 sm:pb-24">
           <div className="max-w-6xl mx-auto">
             <Link
-              href="/projets"
+              href="/#projets"
               className="inline-flex items-center text-xs sm:text-sm text-zinc-400 hover:text-zinc-100 mb-6 sm:mb-8 transition-colors"
             >
               ← Retour aux projets
