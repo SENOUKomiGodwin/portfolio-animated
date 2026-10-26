@@ -21,7 +21,7 @@ export function Nav() {
     { label: 'Accueil', href: '/' },
     { label: 'Projets', href: isProjectDetailPage ? '/#projets' : '/projets' },
     { label: 'À propos', href: '/a-propos' },
-    { label: 'Contact', href: '#contact' },
+    { label: 'Contact', href: '/contact' },
     // { label: 'Contact', href: '/contact' },
   ];
 
