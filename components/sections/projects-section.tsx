@@ -31,7 +31,7 @@ function ProjectCard({ project, index }: ProjectCardProps) {
   const getMockup = () => {
     if (project.slug === 'agritogo') return <BrowserMockup />;
     if (project.slug === 'edupaie') return <DesktopMockup />;
-    if (project.slug === 'bid-app') return <PhoneMockup />;
+    if (project.slug === 'bidapp') return <PhoneMockup />;
     return null;
   };
 
@@ -39,12 +39,12 @@ function ProjectCard({ project, index }: ProjectCardProps) {
     const slugMap: Record<string, string> = {
       'agritogo': 'agritogo.png',
       'edupaie': 'Edupaie.png',
-      'bid-app': 'bidapp.png'
+      'bidapp': 'bidapp.png'
     };
     return `/projects/${slugMap[project.slug] || ''}`;
   };
 
-  const hasImage = ['agritogo', 'edupaie', 'bid-app'].includes(project.slug);
+  const hasImage = ['agritogo', 'edupaie', 'bidapp'].includes(project.slug);
 
   const imageX = useTransform(mouseX, [0, 400], [-20, 20]);
   const imageY = useTransform(mouseY, [0, 400], [-20, 20]);
