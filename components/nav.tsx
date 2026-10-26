@@ -14,9 +14,12 @@ export function Nav() {
   const brand = siteConfig.brand;
   const pathname = usePathname();
 
+  const isHomePage = pathname === '/';
+  const isProjectDetailPage = pathname.startsWith('/projets/') && pathname !== '/projets';
+
   const links = [
     { label: 'Accueil', href: '/' },
-    { label: 'Projets', href: '/projets' },
+    { label: 'Projets', href: isProjectDetailPage ? '/#projets' : '/projets' },
     { label: 'À propos', href: '/a-propos' },
     { label: 'Contact', href: '/contact' },
   ];
@@ -29,7 +32,6 @@ export function Nav() {
     { label: 'Contact', href: '#contact' },
   ];
 
-  const isHomePage = pathname === '/';
   const menuLinks = isHomePage ? landingLinks : links;
 
   useEffect(() => {
